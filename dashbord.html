@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SwiftShare Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-aOQZgks0yHXXM6Kyzv4+H+KQf3H2+kW2YBoX4v3gBQx6DyWZr2m6G3FlbYqOQ78z5RVGPxVi+6kzV00B1H2+2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            background: url('background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            color: #fff;
+            text-align: center;
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.5); /* blackish overlay */
+            z-index: 0;
+        }
+
+        .dashboard-card {
+            position: relative;
+            z-index: 1;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 50px 40px;
+            width: 90%;
+            max-width: 600px;
+            box-shadow: 0 0 15px rgba(0, 123, 255, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .welcome-text {
+            font-size: 1.5rem;
+            color: #ffffff;
+            text-shadow: 0 0 6px rgba(0,0,0,0.5);
+        }
+
+        .main-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #ffffff;
+            text-shadow: 0 0 15px rgba(0,0,0,0.8);
+            margin: 10px 0 20px;
+        }
+
+        p {
+            font-size: 1.2rem;
+            color: #e0e0e0;
+            margin-bottom: 30px;
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 15px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            background-color: rgba(0, 102, 255, 0.9);
+            color: white;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            min-width: 180px;
+        }
+
+        .btn:hover {
+            background-color: rgba(0, 76, 204, 0.95);
+            transform: translateY(-2px);
+        }
+
+        .btn i {
+            font-size: 1.2em;
+        }
+
+        @media (max-width: 500px) {
+            .main-title {
+                font-size: 2.5rem;
+            }
+
+            .btn {
+                width: 100%;
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="dashboard-card">
+        <div class="welcome-text">👋 Welcome to</div>
+        <div class="main-title">SwiftShare 🚀</div>
+        <p>✨ What would you like to do today?</p>
+
+        <div class="btn-container">
+            <button class="btn" onclick="window.location.href='upload.html'">
+                <i class="fas fa-upload"></i> Upload File 📤
+            </button>
+            <button class="btn" onclick="window.location.href='download.html'">
+                <i class="fas fa-download"></i> Download File 📥
+            </button>
+        </div>
+    </div>
+
+</body>
+</html>

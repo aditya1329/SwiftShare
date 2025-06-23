@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SwiftShare - Welcome</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: url('background.jpg') no-repeat center center fixed;
+      background-size: cover;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      color: #fff;
+      text-align: center;
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-color: rgba(0, 0, 0, 0.65); /* blackish overlay */
+      z-index: 0;
+    }
+
+    .heading {
+      z-index: 1;
+    }
+
+    .heading h1 {
+      font-size: 4rem;
+      letter-spacing: 1.2px;
+      text-shadow: 0 2px 12px rgba(255, 255, 255, 0.15);
+    }
+
+    .heading p {
+      font-size: 1.3rem;
+      color: #ccc;
+      margin-top: 8px;
+      font-weight: 300;
+    }
+
+    .slider {
+      display: flex;
+      gap: 40px;
+      margin-top: 60px;
+      flex-wrap: wrap;
+      justify-content: center;
+      z-index: 1;
+    }
+
+    .card {
+      width: 260px;
+      height: 160px;
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
+      backdrop-filter: blur(12px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      position: relative;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.08);
+      overflow: hidden;
+    }
+
+    .card a {
+      font-size: 1.4rem;
+      font-weight: 600;
+      text-decoration: none;
+      color: #ffffff;
+      transition: opacity 0.3s ease;
+      z-index: 2;
+    }
+
+    .card:hover a {
+      opacity: 0;
+    }
+
+    .info-text {
+      position: absolute;
+      font-size: 1.1rem;
+      color: #ddd;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: 1;
+      text-align: center;
+      padding: 0 10px;
+    }
+
+    .card:hover .info-text {
+      opacity: 1;
+    }
+
+    .circle-animation {
+      position: absolute;
+      right: 100px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, #8e2de2, #4a00e0);
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.3;
+      animation: pulse 6s ease-in-out infinite;
+      z-index: 0;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1) translateY(-50%);
+        opacity: 0.3;
+      }
+      50% {
+        transform: scale(1.1) translateY(-50%);
+        opacity: 0.45;
+      }
+    }
+
+    @media screen and (max-width: 768px) {
+      .slider {
+        flex-direction: column;
+        gap: 30px;
+      }
+
+      .circle-animation {
+        display: none;
+      }
+
+      .heading h1 {
+        font-size: 3rem;
+      }
+
+      .card {
+        width: 85vw;
+        height: 150px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="circle-animation"></div>
+
+  <div class="heading">
+    <h1>🚀 SwiftShare</h1>
+    <p>🔐📦 Secure. Speedy. Zero stress. File sharing, but make it ✨ Swift.</p>
+  </div>
+
+  <div class="slider">
+    <div class="card">
+      <div class="info-text">✨ Create a new account to start sharing!</div>
+      <a href="signup.html">👤 New User</a>
+    </div>
+    <div class="card">
+      <div class="info-text">🔐 Log in to continue</div>
+      <a href="login.html">✅ Already a Member</a>
+    </div>
+  </div>
+
+</body>
+</html>

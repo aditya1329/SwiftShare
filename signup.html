@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SwiftShare Signup</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            background: url('background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.5); /* Blackish tint */
+            z-index: 0;
+        }
+
+        .signup-card {
+            position: relative;
+            z-index: 1;
+            width: 350px;
+            padding: 40px 30px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 15px rgba(0, 123, 255, 0.3); /* Blue glow */
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+        }
+
+        .signup-card h2 {
+            margin-bottom: 25px;
+            font-size: 2rem;
+            color: #ffffff;
+            text-shadow: 0 0 5px rgba(0,0,0,0.6);
+        }
+
+        .signup-card label {
+            display: block;
+            margin-top: 10px;
+            margin-bottom: 6px;
+            text-align: left;
+        }
+
+        .signup-card input[type="text"],
+        .signup-card input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: none;
+            border-radius: 10px;
+            outline: none;
+            font-size: 16px;
+            background-color: rgba(255, 255, 255, 0.85);
+            color: #333;
+        }
+
+        .signup-card input[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 10px;
+            background-color: #007bff;
+            color: white;
+            font-size: 17px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .signup-card input[type="submit"]:hover {
+            background-color: #0056b3;
+            transform: scale(1.02);
+        }
+
+        @media (max-width: 400px) {
+            .signup-card {
+                width: 90%;
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="signup-card">
+        <h2>Create Your SwiftShare Account</h2>
+        <form method="POST" action="/SwiftShare/auth/signup.php">
+            <label>Username:</label>
+            <input type="text" name="username" required>
+
+            <label>Password:</label>
+            <input type="password" name="password" required>
+
+            <input type="submit" value="Register">
+        </form>
+    </div>
+
+</body>
+</html>

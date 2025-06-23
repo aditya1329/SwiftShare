@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SwiftShare - Upload</title>
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-aOQZgks0yHXXM6Kyzv4+H+KQf3H2+kW2YBoX4v3gBQx6DyWZr2m6G3FlbYqOQ78z5RVGPxVi+6kzV00B1H2+2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: url('background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            text-align: center;
+            padding-top: 100px;
+            color: #ffffff;
+            position: relative;
+            z-index: 0;
+        }
+
+        /* 🔥 Black transparent overlay (NO blur) */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Blackish overlay */
+            z-index: -1;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #ffffff;
+            text-shadow: 0 0 8px rgba(0,0,0,0.7);
+            margin-bottom: 30px;
+        }
+
+        input[type="text"],
+        input[type="file"] {
+            padding: 12px;
+            font-size: 16px;
+            margin: 10px;
+            width: 270px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            background-color: rgba(255, 255, 255, 0.9);
+            color: #333;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 25px;
+            font-size: 17px;
+            border: none;
+            border-radius: 6px;
+            background-color: rgba(0, 102, 255, 0.9);
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            margin-top: 10px;
+        }
+
+        .btn i {
+            font-size: 1.2rem;
+        }
+
+        .btn:hover {
+            background-color: rgba(0, 76, 204, 0.95);
+            transform: translateY(-2px);
+        }
+
+        #message {
+            margin-top: 25px;
+            font-size: 18px;
+            color: #fff;
+            background-color: rgba(0, 0, 0, 0.4);
+            display: inline-block;
+            padding: 15px 20px;
+            border-radius: 8px;
+            max-width: 600px;
+        }
+
+        #message.error {
+            background-color: rgba(255, 0, 0, 0.4);
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Upload Files to <span style="color:#00bfff">SwiftShare 🚀</span></h1>
+
+    <form id="uploadForm">
+        <input type="text" name="uploader" placeholder="👤 Your Name" required><br>
+        <input type="file" name="files" multiple required><br>
+        <button type="submit" class="btn">
+            <i class="fas fa-upload"></i> Upload
+        </button>
+    </form>
+
+    <div id="message"></div>
+
+    <script>
+        document.getElementById('uploadForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const form = document.getElementById('uploadForm');
+            const formData = new FormData(form);
+            const messageDiv = document.getElementById('message');
+
+            fetch('http://127.0.0.1:5000/upload', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.passcode) {
+                    let fileList = data.files.map(f => f.filename).join(', ');
+                    messageDiv.classList.remove('error');
+                    messageDiv.innerHTML = `
+                        ✅ <strong>Uploaded successfully!</strong><br>
+                        📁 Files: <em>${fileList}</em><br>
+                        🔑 Download Passcode: <strong style="color:#00bfff">${data.passcode}</strong>
+                    `;
+                } else {
+                    messageDiv.classList.add('error');
+                    messageDiv.innerHTML = "❌ Upload failed. Try again.";
+                }
+            })
+            .catch(error => {
+                messageDiv.classList.add('error');
+                messageDiv.innerText = "❌ Server error, try again later.";
+            });
+        });
+    </script>
+</body>
+</html>
